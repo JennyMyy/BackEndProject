@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add new neule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            background-color: rgb(240, 255, 240);
+            font-family: inherit;
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+    <h1>Lisää uusi neule</h1>
+    
+        <form th:object="${neuletyot}" th:action="@{/save}" action="#" method="post">
+            <label for="neuleTitle">Title</label>
+            <input type="text" th:field="*{neuleTitle}" />
+            <p th:if="${#fields.hasErrors('neuleTitle')}" th:errors="*{neuleTitle}">Title Error</p>	
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <label for="neuleInfo">Info</label>
+            <input type="text" th:field="*{neuleInfo}" />
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <label for="neuleLink">Link</label>
+            <input type="text" th:field="*{neuleLink}" />
+            <div style="clear: both; display: block; height: 10px;"></div>
+            <label for="lanka">Lanka</label>
+            <input type="text" th:field="*{lanka}" />
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <label for="calist">Category</label>
+            <select id="calist" th:field="*{category.categoryId}" class="form-control">
+                <option th:each="category: ${categories}" th:value="${category.categoryId}"
+                    th:text="${category.categoryName}"></option>
+            </select>
+            <div style="clear: both; display: block; height: 10px;"></div>
+
+            <input type="submit" value="Save"></input>
+        </form>
+
+        <a href="/neulelist" class="btn btn-success">Peruuta</a>
+    </div>
+</body>
+
+</html>

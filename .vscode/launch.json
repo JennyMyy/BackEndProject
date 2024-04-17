@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-NeuletyotApplication<Neuletyot>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.harjoitustyo.Neuletyot.NeuletyotApplication",
+            "projectName": "Neuletyot",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

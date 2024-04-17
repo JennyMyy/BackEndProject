@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Neuletyot</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <style>
+        body {
+            background-color: rgb(240, 255, 240);
+            font-family: inherit;
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            padding: 30px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h1>Neuleet</h1>
+        <div class="col-md-4">
+            <i>Hei <b sec:authentication="name"></b> 
+        </div>
+        <div class="col-md-4" style="padding:20px 0">
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+            </form>
+        </div>
+
+        <table class="center">
+            <tbody>
+                <tr th:each="neuletyo : ${neuletyot}" class="neuletyo">
+                    <td th:text="${neuletyo.neuleTitle}"></td>
+                    <td><a th:href="@{/neule/{neuleId}(neuleId=${neuletyo.neuleId})}">Katso</a></td>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{neuleId}(neuleId=${neuletyo.neuleId})}">Edit</a></td>
+                    <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${neuletyo.neuleId})}" class="btn btn-xs btn-danger">Delete</a></td> 
+                </tr>
+            </tbody>
+        </table>
+        <p> </p>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/addneule" class="btn btn-success">Lisää uusi neule</a>
+        <p> </p>
+        <a href="/category" class="btn btn-success">Kategoriat</a>
+        <p> </p>
+        <img src="/images/paita.png" alt="Paita">
+
+    </div>
+
+</body>
+
+</html>

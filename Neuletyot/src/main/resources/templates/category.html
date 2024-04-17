@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Category</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" />
+    <style>
+        body {
+            background-color: rgb(240, 255, 240);
+            font-family: inherit;
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h1>Kategoriat</h1>
+        
+
+        <table class="center">
+            <tbody>
+                <tr th:each="category : ${category}" class="neuletyo">
+                    <td th:text="${category.categoryName}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+        <a sec:authorize="hasAuthority('ADMIN')" href="/addcategory" class="btn btn-success">Lisää kategoria</a>
+        <p> </p>
+        <a href="/neulelist" class="btn btn-success">Takaisin</a>
+        <p> </p>
+        <img src="/images/paita2.png" alt="Paita2">
+
+    </div>
+
+</body>
+
+</html>

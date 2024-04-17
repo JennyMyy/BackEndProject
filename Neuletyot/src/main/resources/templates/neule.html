@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Neule</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        body {
+            background-color: rgb(240, 255, 240);
+            font-family: inherit;
+        }
+
+        .center {
+            margin: auto;
+            width: 60%;
+            padding: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <h1 th:text="${neuletyot.isPresent() ? neuletyot.get().neuleTitle : ''}"></h1>
+        <table class="center">
+            <tbody>
+                <tr>
+                    <td>Kategoria:</td>
+                    <td th:text="${neuletyot.isPresent() ? neuletyot.get().category.categoryName : ''}"></td>
+                </tr>
+                <tr>
+                    <td>Kuvaus:</td>
+                    <td th:text="${neuletyot.isPresent() ? neuletyot.get().neuleInfo : ''}"></td>
+                </tr>
+                <tr>
+                    <td>Täältä löydät ohjeen:</td>
+                    <td th:text="${neuletyot.isPresent() ? neuletyot.get().neuleLink : ''}"></td>
+                </tr>
+                <tr>
+                    <td>Työssä käytetty lanka:</td>
+                    <td th:text="${neuletyot.isPresent() ? neuletyot.get().lanka : ''}"></td>
+                </tr>
+            </tbody>
+            <img th:src="@{/images/__${neuletyot.isPresent() ? neuletyot.get().neuleTitle : 'default'}__.png}"
+                alt="Kuva">
+        </table>
+        <a href="/neulelist" class="btn btn-success">Takaisin</a>
+    </div>
+</body>
+
+</html>
